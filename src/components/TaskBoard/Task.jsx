@@ -1,4 +1,5 @@
-import { FaStar } from 'react-icons/fa';
+import { FaEdit, FaStar } from 'react-icons/fa';
+import { IoTrashBin } from 'react-icons/io5';
 import Tags from './Tags';
 const Task = ({
   id,
@@ -27,9 +28,9 @@ const Task = ({
       </td>
       <td className="text-center">{priority}</td>
       <td>
-        <div className="flex items-center justify-center space-x-3">
+        <div className="flex items-center justify-evenly space-x-3">
           <button
-            className="text-blue-500"
+            className="text-blue-500 text-xl"
             onClick={() =>
               onEditTask({
                 id,
@@ -41,10 +42,13 @@ const Task = ({
               })
             }
           >
-            Edit
+            <FaEdit />
           </button>
-          <button className="text-red-500" onClick={() => onDeleteTask(id)}>
-            Delete
+          <button
+            className="text-red-500 text-xl"
+            onClick={() => onDeleteTask(id)}
+          >
+            <IoTrashBin />
           </button>
         </div>
       </td>

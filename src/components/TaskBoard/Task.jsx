@@ -8,11 +8,15 @@ const Task = ({
   isFavourite,
   tags,
   onEditTask,
+  onDeleteTask,
+  onFavouriteClick,
 }) => {
   return (
     <tr className="border-b border-[#2E3443] [&>td]:align-baseline [&>td]:px-4 [&>td]:py-2">
       <td>
-        <FaStar color={isFavourite ? 'yellow' : 'gray'} />
+        <button onClick={() => onFavouriteClick(id)}>
+          <FaStar color={isFavourite ? 'yellow' : 'gray'} />
+        </button>
       </td>
       <td>{title}</td>
       <td>
@@ -39,7 +43,9 @@ const Task = ({
           >
             Edit
           </button>
-          <button className="text-red-500">Delete</button>
+          <button className="text-red-500" onClick={() => onDeleteTask(id)}>
+            Delete
+          </button>
         </div>
       </td>
     </tr>

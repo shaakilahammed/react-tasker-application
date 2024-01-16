@@ -10,12 +10,12 @@ const colors = [
   'AE6D0BDB',
   '10FBEDB2',
 ];
-const Tag = ({ name }) => {
+const Tag = ({ name, index }) => {
   return (
     <li>
       <span
         className={`inline-block h-5 whitespace-nowrap rounded-[45px] bg-[#${
-          colors[Math.floor(Math.random() * colors.length)]
+          colors[index % 10]
         }] px-2.5 text-sm capitalize text-[#F4F5F6]`}
       >
         {name}
@@ -28,7 +28,7 @@ const Tags = ({ tags }) => {
   return (
     <ul className="flex justify-center gap-1.5 flex-wrap">
       {tags.map((tag, index) => (
-        <Tag key={index} name={tag} />
+        <Tag key={index} name={tag} index={index} />
       ))}
     </ul>
   );

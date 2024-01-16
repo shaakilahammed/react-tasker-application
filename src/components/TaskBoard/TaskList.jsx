@@ -1,6 +1,6 @@
 import Task from './Task';
 
-const TaskList = ({ tasks, onEditTask }) => {
+const TaskList = ({ tasks, onEditTask, onDeleteTask, onFavouriteClick }) => {
   return (
     <div className="overflow-auto">
       <table className="table-fixed overflow-auto xl:w-full">
@@ -31,7 +31,13 @@ const TaskList = ({ tasks, onEditTask }) => {
         </thead>
         <tbody>
           {tasks.map((task) => (
-            <Task key={task.id} {...task} onEditTask={onEditTask} />
+            <Task
+              key={task.id}
+              {...task}
+              onEditTask={onEditTask}
+              onDeleteTask={onDeleteTask}
+              onFavouriteClick={onFavouriteClick}
+            />
           ))}
         </tbody>
       </table>

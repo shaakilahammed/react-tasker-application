@@ -1,13 +1,15 @@
 import { useState } from 'react';
-const initialTask = {
-  id: crypto.randomUUID(),
-  title: '',
-  description: '',
-  priority: '',
-  tags: [],
-  isFavourite: false,
-};
+
 const AddTaskModal = ({ onSave, taskToUpdate, onCloseModal }) => {
+  const initialTask = {
+    id: crypto.randomUUID(),
+    title: '',
+    description: '',
+    priority: '',
+    tags: [],
+    isFavourite: false,
+  };
+
   const [task, setTask] = useState(taskToUpdate || initialTask);
 
   const handleChange = (e) => {
@@ -18,7 +20,8 @@ const AddTaskModal = ({ onSave, taskToUpdate, onCloseModal }) => {
     }
     setTask({ ...task, [name]: value });
   };
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     onSave(task);
   };
   return (

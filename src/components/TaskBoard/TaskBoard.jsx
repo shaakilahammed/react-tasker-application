@@ -37,9 +37,28 @@ const TaskBoard = () => {
     setShowModal(false);
   };
 
-  const onEditTaskHandler = (task) => {
+  const editTaskHandler = (task) => {
     setTaskToUpdate(task);
     setShowModal(true);
+  };
+
+  const favouriteClickHandler = (taskId) => {
+    const updatedTasks = tasks.map((task) => {
+      if (task.id === taskId)
+        return { ...task, isFavourite: !task.isFavourite };
+      else return task;
+    });
+
+    setTasks(updatedTasks);
+  };
+
+  const deleteTaskHandler = (taskId) => {
+    const taskAfterDelete = tasks.filter((task) => task.id !== taskId);
+    setTasks(taskAfterDelete);
+  };
+
+  const deleteAllClickHandler = () => {
+    setTasks([]);
   };
 
   const closeModal = () => {
@@ -59,9 +78,17 @@ const TaskBoard = () => {
       <div className="container">
         <SearchBox />
         <div className="rounded-xl border border-[rgba(206,206,206,0.12)] bg-[#1D212B] px-6 py-8 md:px-9 md:py-16">
-          <TaskActions onShowModal={() => setShowModal(true)} />
+          <TaskActions
+            onShowModal={() => setShowModal(true)}
+            onDeleteAllClick={deleteAllClickHandler}
+          />
 
-          <TaskList tasks={tasks} onEditTask={onEditTaskHandler} />
+          <TaskList
+            tasks={tasks}
+            onEditTask={editTaskHandler}
+            onDeleteTask={deleteTaskHandler}
+            onFavouriteClick={favouriteClickHandler}
+          />
         </div>
       </div>
     </section>

@@ -1,7 +1,17 @@
-const SearchBox = () => {
+import { useState } from 'react';
+
+const SearchBox = ({ onSearch }) => {
+  const [query, setQuery] = useState('');
+  const handleChange = (e) => {
+    setQuery(e.target.value);
+  };
+  const submitHandler = (e) => {
+    e.preventDefault();
+    onSearch(query);
+  };
   return (
     <div className="p-2 flex justify-end">
-      <form>
+      <form onSubmit={submitHandler}>
         <div className="flex">
           <div className="relative overflow-hidden rounded-lg text-gray-50 md:min-w-[380px] lg:min-w-[440px]">
             <input
@@ -9,6 +19,8 @@ const SearchBox = () => {
               id="search-dropdown"
               className="z-20 block w-full bg-gray-800 px-4 py-2 pr-10 focus:outline-none"
               placeholder="Search Task"
+              onChange={handleChange}
+              value={query}
               required
             />
             <button

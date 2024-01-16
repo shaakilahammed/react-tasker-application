@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import AddTaskModal from './AddTaskModal';
+import NoTaskFound from './NoTaskFound';
 import SearchBox from './SearchBox';
 import TaskActions from './TaskActions';
 import TaskList from './TaskList';
@@ -12,6 +13,33 @@ const data = [
       'React is the library for web and native user interfaces. Build user interfaces out of individual pieces called components written in JavaScript.',
     tags: ['web', 'javascript', 'react'],
     priority: 'High',
+    isFavourite: true,
+  },
+  {
+    id: crypto.randomUUID(),
+    title: 'API Data Synchronization with Python',
+    description:
+      'Implement a Python solution to synchronize data between an API and a third-party database securely, optimizing data exchange. ',
+    tags: ['Python', 'API', 'Data Synchronization'],
+    priority: 'Low',
+    isFavourite: false,
+  },
+  {
+    id: crypto.randomUUID(),
+    title: 'Efficient Web API Connectivity in Python',
+    description:
+      'Develop a Python-based solution for connecting an API to a third-party database securely, focusing on efficient data handling and exchange. ',
+    tags: ['Web', 'Python', 'API'],
+    priority: 'Medium',
+    isFavourite: true,
+  },
+  {
+    id: crypto.randomUUID(),
+    title: 'Data Handling',
+    description:
+      'Integrate a web API with a third-party database using secure methods, focusing on seamless data exchange and data integrity.',
+    tags: ['Web', 'Python', 'Security'],
+    priority: 'Low',
     isFavourite: false,
   },
 ];
@@ -91,12 +119,16 @@ const TaskBoard = () => {
             onDeleteAllClick={deleteAllClickHandler}
           />
 
-          <TaskList
-            tasks={tasks}
-            onEditTask={editTaskHandler}
-            onDeleteTask={deleteTaskHandler}
-            onFavouriteClick={favouriteClickHandler}
-          />
+          {tasks.length > 0 ? (
+            <TaskList
+              tasks={tasks}
+              onEditTask={editTaskHandler}
+              onDeleteTask={deleteTaskHandler}
+              onFavouriteClick={favouriteClickHandler}
+            />
+          ) : (
+            <NoTaskFound />
+          )}
         </div>
       </div>
     </section>

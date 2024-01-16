@@ -1,7 +1,15 @@
+import Footer from './components/Footer';
+import Hero from './components/Hero';
+import Navbar from './components/Navbar';
+import TaskBoard from './components/TaskBoard/TaskBoard';
+
 function App() {
   return (
     <>
-      <h1>React Tasker Application</h1>
+      <Navbar />
+      <Hero />
+      <TaskBoard />
+      <Footer />
     </>
   );
 }
